@@ -27,17 +27,15 @@ const newTask = document.querySelector('.card-template');
 const btnNewTask = document.querySelector('.js-btn-new-task');
 
 // const containerList = document.querySelector('.js-container-list');
-// const addTaskButton = document.querySelectorAll('.js-add-task');
-// console.log(addTaskButton);
 
 // FUNCIÓN PARA CREAR NUEVA LISTA
 
-function createNewListAAAAAA() {
+function createNewList() {
   const column = columnTemplate.cloneNode(true);
   column.classList.remove('column-template');
   column.classList.remove('hidden');
   box.appendChild(column);
-  // newTask.addEventListener('click', createNewTask);
+  btnNewTask.addEventListener('click', createNewTask);
 }
 
 // FUNCIÓN PARA CREAR NUEVA TAREA
@@ -48,90 +46,71 @@ function createNewTask() {
   const task = newTask.cloneNode(true);
   task.classList.remove('card-template');
   task.classList.remove('hidden');
-
+  const containerList = document.querySelector('.js-container-list');
+  console.log(containerList);
+  containerList.insertBefore(task, btnNewTask);
   // insertBefore antes de lo azul
-  // addTaskButton.forEach((addTask) => {
-  //   containerList.insertBefore(task, addTask);
-  // });
 }
 
 newList.addEventListener('click', createNewList);
-btnNewTask.addEventListener('click', createNewTask);
-
-// addTaskButton.addEventListener('click', createNewTask);
-
-// document.querySelectorAll('.js-add-task').forEach((addTaskButton) => {
-//   addTaskButton.addEventListener('click', createNewTask);
-// });
 
 // MANERA PRIMITIVA DE CREAR LISTA
 
-function createNewList() {
-  let div = document.createElement('div');
-  let formList = document.createElement('form');
-  formList.setAttribute('class', 'app-list-form align-middle p-1 position-relative');
-  let input = document.createElement('input');
-  div.setAttribute('class', 'p-1 rounded-sm bg-primary shadow');
-  input.setAttribute('class', 'app-list-input form-control form-control-sm list__input--title');
-  input.setAttribute('placeholder', 'Title');
-  input.setAttribute('type', 'text');
-  input.setAttribute('value', '');
-  input.setAttribute('title', 'Editar título de la lista');
-  let tresPuntos = document.createElement('div');
-  tresPuntos.setAttribute('class', 'app-list-options');
-  let spanTresPuntos = document.createElement('span');
-  spanTresPuntos.setAttribute('class', 'pl-2 pr-2 text-white-50 fas fa-ellipsis-v');
-  let containerButtons = document.createElement('div');
-  containerButtons.setAttribute('class', 'app-list-btns btn-group btn-group-sm');
-  // tresPuntos.setAttribute('class', 'app-list-btns btn-group btn-group-sm');
-  let button1 = document.createElement('button');
-  button1.setAttribute('class', 'btn btn-light text-muted border shadow-sm');
-  button1.setAttribute('title', 'Borrar esta tarjeta');
-  let trash = document.createElement('span');
-  trash.setAttribute('class', 'fas fa-trash-alt');
-  let button2 = document.createElement('button');
-  button2.setAttribute('type', 'button');
-  button2.setAttribute('class', 'btn btn-light text-muted border shadow-sm app-list-move-left');
-  button2.setAttribute('title', 'Mover esta lista hacia la izquierda');
-  let leftArrow = document.createElement('span');
-  leftArrow.setAttribute('class', 'fas fa-arrow-left');
-  let button3 = document.createElement('button');
-  button3.setAttribute('type', 'button');
-  button3.setAttribute('class', 'btn btn-light text-muted border shadow-sm app-list-move-right');
-  button3.setAttribute('title', 'Mover esta lista hacia la derecha');
-  let rightArrow = document.createElement('span');
-  rightArrow.setAttribute('class', 'fas fa-arrow-right');
-  let btnAddTask = document.createElement('button');
-  btnAddTask.setAttribute('type', 'button');
-  btnAddTask.setAttribute('class', 'js-btn-new-task ml-1 btn btn-primary btn-sm text-white-50');
-  btnAddTask.setAttribute('title', 'Añadir una nueva tarjeta');
-  const btnAddTaskText = document.createTextNode('  Añadir otra tarjeta');
-  let spanBtnAddTask = document.createElement('span');
-  spanBtnAddTask.setAttribute('class', 'fas fa-plus');
+// function createNewList2() {
+//   let div = document.createElement('div');
+//   let formList = document.createElement('form');
+//   formList.setAttribute('class', 'app-list-form align-middle p-1 position-relative');
+//   let input = document.createElement('input');
+//   div.setAttribute('class', 'js-container-list p-1 rounded-sm bg-primary shadow');
+//   input.setAttribute('class', 'app-list-input form-control form-control-sm list__input--title');
+//   input.setAttribute('placeholder', 'Title');
+//   input.setAttribute('type', 'text');
+//   input.setAttribute('value', '');
+//   input.setAttribute('title', 'Editar título de la lista');
+//   let tresPuntos = document.createElement('div');
+//   tresPuntos.setAttribute('class', 'app-list-options');
+//   let spanTresPuntos = document.createElement('span');
+//   spanTresPuntos.setAttribute('class', 'pl-2 pr-2 text-white-50 fas fa-ellipsis-v');
+//   let containerButtons = document.createElement('div');
+//   containerButtons.setAttribute('class', 'app-list-btns btn-group btn-group-sm');
+//   let button1 = document.createElement('button');
+//   button1.setAttribute('class', 'btn btn-light text-muted border shadow-sm');
+//   button1.setAttribute('title', 'Borrar esta tarjeta');
+//   let trash = document.createElement('span');
+//   trash.setAttribute('class', 'fas fa-trash-alt');
+//   let button2 = document.createElement('button');
+//   button2.setAttribute('type', 'button');
+//   button2.setAttribute('class', 'btn btn-light text-muted border shadow-sm app-list-move-left');
+//   button2.setAttribute('title', 'Mover esta lista hacia la izquierda');
+//   let leftArrow = document.createElement('span');
+//   leftArrow.setAttribute('class', 'fas fa-arrow-left');
+//   let button3 = document.createElement('button');
+//   button3.setAttribute('type', 'button');
+//   button3.setAttribute('class', 'btn btn-light text-muted border shadow-sm app-list-move-right');
+//   button3.setAttribute('title', 'Mover esta lista hacia la derecha');
+//   let rightArrow = document.createElement('span');
+//   rightArrow.setAttribute('class', 'fas fa-arrow-right');
+//   let btnAddTask = document.createElement('button');
+//   btnAddTask.setAttribute('type', 'button');
+//   btnAddTask.setAttribute('class', 'js-btn-new-task ml-1 btn btn-primary btn-sm text-white-50');
+//   btnAddTask.setAttribute('title', 'Añadir una nueva tarjeta');
+//   const btnAddTaskText = document.createTextNode('  Añadir otra tarjeta');
+//   let spanBtnAddTask = document.createElement('span');
+//   spanBtnAddTask.setAttribute('class', 'fas fa-plus');
 
-  box.appendChild(div);
-  div.appendChild(formList);
-  formList.appendChild(input);
-  formList.appendChild(tresPuntos);
-  formList.appendChild(button1);
-  formList.appendChild(button2);
-  formList.appendChild(button3);
-  // div.appendChild(input);
-  // div.appendChild(tresPuntos);
-  tresPuntos.appendChild(spanTresPuntos);
-  tresPuntos.appendChild(containerButtons);
-  // div.appendChild(button1);
-  // div.appendChild(button2);
-  // div.appendChild(button3);
-  button1.appendChild(trash);
-  button2.appendChild(leftArrow);
-  button3.appendChild(rightArrow);
-  div.appendChild(btnAddTask);
-  btnAddTask.appendChild(spanBtnAddTask);
-  btnAddTask.appendChild(btnAddTaskText);
-  btnAddTask.addEventListener('click', crearTarjeta);
-}
-
-function crearTarjeta() {
-  console.log('chao');
-}
+//   box.appendChild(div);
+//   div.appendChild(formList);
+//   formList.appendChild(input);
+//   formList.appendChild(tresPuntos);
+//   formList.appendChild(button1);
+//   formList.appendChild(button2);
+//   formList.appendChild(button3);
+//   tresPuntos.appendChild(spanTresPuntos);
+//   tresPuntos.appendChild(containerButtons);
+//   button1.appendChild(trash);
+//   button2.appendChild(leftArrow);
+//   button3.appendChild(rightArrow);
+//   div.appendChild(btnAddTask);
+//   btnAddTask.appendChild(spanBtnAddTask);
+//   btnAddTask.appendChild(btnAddTaskText);
+// }
