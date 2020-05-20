@@ -46,24 +46,15 @@ const handleBoardEvent = (ev) => {
 
 // PARA NO REPETIR CÓDIGO REFACTORIZO USANDO LA FUNCIÓN DE ARRIBA
 
-const moveListLeft = (ev) => {
-  console.log('moviendo a la izquierda', ev.currentTarget.id);
-};
-const moveListRight = (ev) => {
-  console.log('moviendo a la izquierda', ev.currentTarget.id);
-};
-const moveListDelete = (ev) => {
-  console.log('moviendo a la izquierda', ev.currentTarget.id);
-};
-
-// const handleBoardEvent = ev => {
-//   const dataset = ev.currentTarget.dataset;
-// }
-
-const openCard = (ev) => {
-  cardId = ev.currentTarget.dataset.cardId;
-};
-
+// const moveListLeft = (ev) => {
+//   console.log('moviendo a la izquierda', ev.currentTarget.id);
+// };
+// const moveListRight = (ev) => {
+//   console.log('moviendo a la izquierda', ev.currentTarget.id);
+// };
+// const moveListDelete = (ev) => {
+//   console.log('moviendo a la izquierda', ev.currentTarget.id);
+// };
 // const render = () => {
 //   board.render(data.board.list);
 //   listenEvents('.js-move-left', 'click', moveListLeft);
@@ -74,10 +65,15 @@ const openCard = (ev) => {
 //     btn.addEventListener('click', moveListLeft);
 //   }
 // };
+
+const openCard = (ev) => {
+  cardId = ev.currentTarget.dataset.cardId;
+};
+
 const render = () => {
   // const filteredList = state.filter(data.board.list, filterText);
-  debugger;
   board.render(data.board.list);
+  listenEvents('.js-click', 'click', handleBoardEvent);
   // board.render(filteredList);
 };
 

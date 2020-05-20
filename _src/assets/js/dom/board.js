@@ -81,6 +81,10 @@ const renderDeleteButton = (parent, list) => {
       type: 'button',
       title: 'Borrar esta tarjeta',
     },
+    dataset: {
+      action: 'delete',
+      listId: list.id,
+    },
   });
   helpers.appendElement(deleteButtonEl, {
     tag: 'span',
@@ -96,6 +100,10 @@ const renderLeftButton = (parent, list) => {
       type: 'button',
       title: 'Mover esta lista hacia la izquierda',
     },
+    dataset: {
+      action: 'move-list-left',
+      listId: list.id,
+    },
   });
   helpers.appendElement(leftButtonEl, {
     tag: 'span',
@@ -110,6 +118,10 @@ const renderRightButton = (parent, list) => {
     attributes: {
       type: 'button',
       title: 'Mover esta lista hacia la derecha',
+    },
+    dataset: {
+      action: 'move-list-right',
+      listId: list.id,
     },
   });
   helpers.appendElement(rightButtonEl, {
