@@ -52,6 +52,10 @@ const renderInput = (parent, list) => {
       value: list.title,
       title: 'Editar el título de la lista',
     },
+    dataset: {
+      action: 'set-list-title',
+      listId: list.id,
+    },
   });
 };
 
@@ -76,13 +80,13 @@ const renderOptions = (parent, list) => {
 const renderDeleteButton = (parent, list) => {
   const deleteButtonEl = helpers.appendElement(parent, {
     tag: 'button',
-    class: 'btn btn-light text-muted border shadow-sm',
+    class: 'js-click btn btn-light text-muted border shadow-sm',
     attributes: {
       type: 'button',
       title: 'Borrar esta tarjeta',
     },
     dataset: {
-      action: 'delete',
+      action: 'delete-list',
       listId: list.id,
     },
   });
@@ -95,7 +99,7 @@ const renderDeleteButton = (parent, list) => {
 const renderLeftButton = (parent, list) => {
   const leftButtonEl = helpers.appendElement(parent, {
     tag: 'button',
-    class: 'btn btn-light text-muted border shadow-sm app-list-left-button',
+    class: 'js-click btn btn-light text-muted border shadow-sm app-list-left-button',
     attributes: {
       type: 'button',
       title: 'Mover esta lista hacia la izquierda',
@@ -114,7 +118,7 @@ const renderLeftButton = (parent, list) => {
 const renderRightButton = (parent, list) => {
   const rightButtonEl = helpers.appendElement(parent, {
     tag: 'button',
-    class: 'btn btn-light text-muted border shadow-sm app-list-right-button',
+    class: 'js-click btn btn-light text-muted border shadow-sm app-list-right-button',
     attributes: {
       type: 'button',
       title: 'Mover esta lista hacia la derecha',
@@ -159,10 +163,13 @@ const renderNewListButton = (parent) => {
   });
   const buttonEl = helpers.appendElement(divEl, {
     tag: 'button',
-    class: 'btn btn-light btn-outline-primary btn-sm ml-2 mr-5 mshadow-sm',
+    class: 'js-click btn btn-light btn-outline-primary btn-sm ml-2 mr-5 mshadow-sm',
     attributes: {
       type: 'button',
       title: 'Añadir una nueva lista',
+    },
+    dataset: {
+      action: 'add-list',
     },
   });
   helpers.appendElement(buttonEl, {
@@ -189,7 +196,7 @@ const renderNewListButton = (parent) => {
   // appListInnerEl.classList.add('p-1', 'rounded-sm bg-primary', 'shadow');
   // appListEl.appendChild(appListInnerEl);
 
-  // console.log(boardEl);
+  console.log(buttonEl.dataset);
 };
 
 // ESTO LO PASAMOS A MAIN.JS

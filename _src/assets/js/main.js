@@ -30,18 +30,31 @@ const startApp = () => {
 };
 
 const handleBoardEvent = (ev) => {
-  const action = ev.currentTarget.dataset.action;
-  if (action === 'delete-list') {
-    // aquí borro
+  debugger;
+  const dataset = ev.currentTarget.dataset;
+  if (dataset.action === 'add-list') {
+    data.board.list.push({
+      id: 'list-' + getNewId(),
+      title: '',
+      cards: [],
+    });
+  } else if (dataset.action === 'delete-list') {
+    // el código este lo centra
     const id = ev.currentTarget.dataset.listId;
     const listIndex = data.board.list.findIndex((list) => list.id === id);
     data.board.list.splice(listIndex, 1);
-    // guardo en ls
-    ls.set(data);
-    // pinto
-    render();
   }
+  // guardo en ls
+  ls.set(data);
+  // pinto
+  render();
   console.log('manejando', ev.currentTarget.id, ev.currentTarget.dataset);
+};
+
+// getters
+
+const getNewId = () => {
+  return Date.now();
 };
 
 // PARA NO REPETIR CÓDIGO REFACTORIZO USANDO LA FUNCIÓN DE ARRIBA
