@@ -43,6 +43,10 @@ const handleBoardEvent = (ev) => {
     const id = ev.currentTarget.dataset.listId;
     const listIndex = data.board.list.findIndex((list) => list.id === id);
     data.board.list.splice(listIndex, 1);
+  } else if (dataset.action === 'move-list-right') {
+    const listIndex = getListIndex(dataset.listId);
+    const currentList = data.board.list.splice(listIndex, 1);
+    data.board.list.splice(listIndex + 1, 0, currentList[0]);
   }
   // guardo en ls
   ls.set(data);
@@ -52,6 +56,10 @@ const handleBoardEvent = (ev) => {
 };
 
 // getters
+
+const getListIndex = (id) => {
+  return data.board.list.findIndex((list) => list.id === id);
+};
 
 const getNewId = () => {
   return Date.now();
