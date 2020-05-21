@@ -83,6 +83,15 @@ const handleBoardEvent = (ev) => {
   console.log('manejando', ev.currentTarget.id, ev.currentTarget.dataset);
 };
 
+const handleDeleteCard = () => {
+  const listIndex = getCardListIndex(cardId);
+  const cardIndex = getCardIndex(cardId);
+  data.board.list[listIndex].cards.splice(cardIndex, 1);
+  edit.close();
+  ls.set(data);
+  render();
+};
+
 // getters
 
 const getListIndex = (id) => {
@@ -160,6 +169,7 @@ const render = () => {
   listenEvents('.js-click', 'click', handleBoardEvent);
   listenEvents('.js-change', 'change', handleBoardEvent);
   listenEvents('.js-open-card', 'click', openCard);
+  listenEvents('.js-edit-delete', 'click', handleDeleteCard);
   // board.render(filteredList);
 };
 
