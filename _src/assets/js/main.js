@@ -7,6 +7,7 @@
 import api from './services/api.js';
 import ls from './services/local-storage.js';
 import board from './dom/board.js';
+import edit from './dom/edit.js';
 
 let data = {};
 let cardId = '';
@@ -108,6 +109,16 @@ const getCardIndex = (id) => {
   }
 };
 
+const getCard = (id) => {
+  for (const list of data.board.list) {
+    for (const card of list.cards) {
+      if (card.id === id) {
+        return card;
+      }
+    }
+  }
+};
+
 const getNewId = () => {
   return Date.now();
 };
@@ -136,6 +147,11 @@ const getNewId = () => {
 
 const openCard = (ev) => {
   cardId = ev.currentTarget.dataset.cardId;
+  const card = getCard(cardId);
+
+  // const list = state.getListOfCard(data, cardId);
+  const list = data.board.list[getCardListIndex(cardId)];
+  edit.open(card, list);
 };
 
 const render = () => {
@@ -143,6 +159,7 @@ const render = () => {
   board.render(data.board.list);
   listenEvents('.js-click', 'click', handleBoardEvent);
   listenEvents('.js-change', 'change', handleBoardEvent);
+  listenEvents('.js-open-card', 'click', openCard);
   // board.render(filteredList);
 };
 
