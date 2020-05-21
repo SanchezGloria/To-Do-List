@@ -100,6 +100,14 @@ const modifyCardTitle = (ev) => {
   render();
 };
 
+const modifyCardDescription = (ev) => {
+  const card = getCard(cardId);
+  card.description = ev.currentTarget.value;
+  console.log(ev.currentTarget.value);
+  ls.set(data);
+  render();
+};
+
 // getters
 
 const getListIndex = (id) => {
@@ -179,6 +187,7 @@ const render = () => {
   listenEvents('.js-open-card', 'click', openCard);
   listenEvents('.js-edit-delete', 'click', handleDeleteCard);
   listenEvents('.js-edit-title', 'change', modifyCardTitle);
+  listenEvents('.js-edit-description', 'change', modifyCardDescription);
   // board.render(filteredList);
 };
 
