@@ -47,6 +47,10 @@ const handleBoardEvent = (ev) => {
     const listIndex = getListIndex(dataset.listId);
     const currentList = data.board.list.splice(listIndex, 1);
     data.board.list.splice(listIndex + 1, 0, currentList[0]);
+  } else if (dataset.action === 'move-list-left') {
+    const listIndex = getListIndex(dataset.listId);
+    const currentList = data.board.list.splice(listIndex, 1);
+    data.board.list.splice(listIndex - 1, 0, currentList[0]);
   }
   // guardo en ls
   ls.set(data);
