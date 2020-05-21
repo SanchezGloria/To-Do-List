@@ -45,7 +45,7 @@ const renderListHeader = (parent, list) => {
 const renderInput = (parent, list) => {
   helpers.appendElement(parent, {
     tag: 'input',
-    class: 'app-list-input form-control form-control-sm',
+    class: 'js-change app-list-input form-control form-control-sm',
     attributes: {
       placeholder: 'Tareas importantes',
       type: 'text',
@@ -53,7 +53,7 @@ const renderInput = (parent, list) => {
       title: 'Editar el título de la lista',
     },
     dataset: {
-      action: 'set-list-title',
+      action: 'modify-list-title',
       listId: list.id,
     },
   });

@@ -51,6 +51,11 @@ const handleBoardEvent = (ev) => {
     const listIndex = getListIndex(dataset.listId);
     const currentList = data.board.list.splice(listIndex, 1);
     data.board.list.splice(listIndex - 1, 0, currentList[0]);
+  } else if (dataset.action === 'modify-list-title') {
+    const listIndex = getListIndex(dataset.listId);
+    console.log(ev.currentTarget.value);
+
+    data.board.list[listIndex].title = ev.currentTarget.value;
   }
   // guardo en ls
   ls.set(data);
@@ -99,6 +104,7 @@ const render = () => {
   // const filteredList = state.filter(data.board.list, filterText);
   board.render(data.board.list);
   listenEvents('.js-click', 'click', handleBoardEvent);
+  listenEvents('.js-change', 'change', handleBoardEvent);
   // board.render(filteredList);
 };
 
@@ -120,5 +126,3 @@ const listenEvents = (selector, eventType, eventHandler) => {
 };
 
 startApp();
-
-console.log('hola');
