@@ -56,6 +56,14 @@ const handleBoardEvent = (ev) => {
     console.log(ev.currentTarget.value);
 
     data.board.list[listIndex].title = ev.currentTarget.value;
+  } else if (dataset.action === 'add-card') {
+    const listIndex = getListIndex(dataset.listId);
+    data.board.list[listIndex].cards.push({
+      id: 'card-' + getNewId(),
+      title: 'Nueva tarjeta',
+      description: '',
+      tags: [],
+    });
   }
   // guardo en ls
   ls.set(data);

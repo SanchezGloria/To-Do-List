@@ -138,10 +138,14 @@ const renderListFooter = (parent, list) => {
   // add card button
   const buttonEl = helpers.appendElement(parent, {
     tag: 'button',
-    class: 'ml-1 btn btn-primary btn-sm mb-1 text-white-50',
+    class: 'js-click ml-1 btn btn-primary btn-sm mb-1 text-white-50',
     attributes: {
       type: 'button',
       title: 'Añadir una nueva tarjeta',
+    },
+    dataset: {
+      action: 'add-card',
+      listId: list.id,
     },
   });
   helpers.appendElement(buttonEl, {
