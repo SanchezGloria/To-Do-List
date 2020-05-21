@@ -69,14 +69,11 @@ const handleBoardEvent = (ev) => {
     const cardIndex = getCardIndex(dataset.cardId);
     const currentCard = data.board.list[listIndex].cards.splice(cardIndex, 1);
     data.board.list[listIndex].cards.splice(cardIndex - 1, 0, currentCard[0]);
-    // const cardIndex = data.board.list[listIndex].cards.findIndex((card) => card.id === dataset.cardId);
-    // const currentCard = data.board.list[listIndex].cards.splice(cardIndex, 1);
-    // data.board.list[listIndex].cards.splice(cardIndex + 1, 0, currentCard[0]);
   } else if (dataset.action === 'move-card-down') {
-    // const listIndex = getListIndex(dataset.listId);
-    // const cardIndex = getCardIndex(dataset.cardId);
-    // const currentCard = data.board.list[listIndex].cards.splice(cardIndex, 1);
-    // data.board.list[listIndex].cards.splice(cardIndex + 1, 0, currentCard[0]);
+    const listIndex = getCardListIndex(dataset.cardId);
+    const cardIndex = getCardIndex(dataset.cardId);
+    const currentCard = data.board.list[listIndex].cards.splice(cardIndex, 1);
+    data.board.list[listIndex].cards.splice(cardIndex + 1, 0, currentCard[0]);
   }
   // guardo en ls
   ls.set(data);
