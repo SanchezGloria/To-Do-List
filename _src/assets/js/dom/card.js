@@ -15,6 +15,9 @@ const renderCard = (parent, card) => {
     attributes: {
       title: 'Abrir la tarjeta',
     },
+    dataset: {
+      cardId: card.id,
+    },
   });
   renderTags(cardEl, card.tags);
   renderTitle(cardEl, card.title);
@@ -78,10 +81,14 @@ const renderButtons = (parent, card) => {
 const renderUpButton = (parent, card) => {
   const upButtonEl = helpers.appendElement(parent, {
     tag: 'button',
-    class: 'btn btn-light text-muted border shadow-sm app-card-up-button',
+    class: 'js-click btn btn-light text-muted border shadow-sm app-card-up-button',
     attributes: {
       type: 'button',
       title: 'Mover esta tarjeta hacia arriba',
+    },
+    dataset: {
+      action: 'move-card-up',
+      cardId: card.id,
     },
   });
   helpers.appendElement(upButtonEl, {
@@ -93,10 +100,14 @@ const renderUpButton = (parent, card) => {
 const renderDownButton = (parent, card) => {
   const downButtonEl = helpers.appendElement(parent, {
     tag: 'button',
-    class: 'btn btn-light text-muted border shadow-sm app-card-down-button',
+    class: 'js-click btn btn-light text-muted border shadow-sm app-card-down-button',
     attributes: {
       type: 'button',
       title: 'Mover esta tarjeta hacia abajo',
+    },
+    dataset: {
+      action: 'move-card-down',
+      cardId: card.id,
     },
   });
   helpers.appendElement(downButtonEl, {

@@ -64,6 +64,19 @@ const handleBoardEvent = (ev) => {
       description: '',
       tags: [],
     });
+  } else if (dataset.action === 'move-card-up') {
+    const listIndex = getCardListIndex(dataset.cardId);
+    const cardIndex = getCardIndex(dataset.cardId);
+    const currentCard = data.board.list[listIndex].cards.splice(cardIndex, 1);
+    data.board.list[listIndex].cards.splice(cardIndex - 1, 0, currentCard[0]);
+    // const cardIndex = data.board.list[listIndex].cards.findIndex((card) => card.id === dataset.cardId);
+    // const currentCard = data.board.list[listIndex].cards.splice(cardIndex, 1);
+    // data.board.list[listIndex].cards.splice(cardIndex + 1, 0, currentCard[0]);
+  } else if (dataset.action === 'move-card-down') {
+    // const listIndex = getListIndex(dataset.listId);
+    // const cardIndex = getCardIndex(dataset.cardId);
+    // const currentCard = data.board.list[listIndex].cards.splice(cardIndex, 1);
+    // data.board.list[listIndex].cards.splice(cardIndex + 1, 0, currentCard[0]);
   }
   // guardo en ls
   ls.set(data);
@@ -76,6 +89,26 @@ const handleBoardEvent = (ev) => {
 
 const getListIndex = (id) => {
   return data.board.list.findIndex((list) => list.id === id);
+};
+
+const getCardListIndex = (id) => {
+  for (let index = 0; index < data.board.list.length; index += 1) {
+    const list = data.board.list[index];
+    const cardFound = list.cards.find((card) => card.id === id);
+    if (cardFound) {
+      return index;
+    }
+  }
+};
+
+const getCardIndex = (id) => {
+  for (let index = 0; index < data.board.list.length; index += 1) {
+    const list = data.board.list[index];
+    const cardIndex = list.cards.findIndex((card) => card.id === id);
+    if (cardIndex >= 0) {
+      return cardIndex;
+    }
+  }
 };
 
 const getNewId = () => {
