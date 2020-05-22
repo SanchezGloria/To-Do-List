@@ -13,4 +13,8 @@
   &:hover &-btns {
     opacity: 1;
   }
+  &:nth-of-type(1) &-up-button,
+  &:nth-last-of-type(1) &-down-button {
+    display: none;
+  }
 }

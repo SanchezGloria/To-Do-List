@@ -1,8 +1,4 @@
 'use strict';
-// estos import no estaban en su explicación
-// import './edit.js';
-// import './menu.js';
-// import './searchInput.js';
 
 import api from './services/api.js';
 import ls from './services/local-storage.js';
@@ -15,7 +11,7 @@ let filterText = '';
 
 const startApp = () => {
   // const localStorageData = localStorage.getItem('boardData');
-  // al refrescar pinta un null. Indicador del null
+  // al refrescar pinta un null.
   // console.log(localStorageData);
   debugger;
   if (ls.isValid()) {
@@ -83,6 +79,8 @@ const handleBoardEvent = (ev) => {
   console.log('manejando', ev.currentTarget.id, ev.currentTarget.dataset);
 };
 
+// card
+
 const handleDeleteCard = () => {
   const listIndex = getCardListIndex(cardId);
   const cardIndex = getCardIndex(cardId);
@@ -148,7 +146,58 @@ const getNewId = () => {
   return Date.now();
 };
 
-// PARA NO REPETIR CÓDIGO REFACTORIZO USANDO LA FUNCIÓN DE ARRIBA
+const openCard = (ev) => {
+  cardId = ev.currentTarget.dataset.cardId;
+  const card = getCard(cardId);
+  const list = data.board.list[getCardListIndex(cardId)];
+  edit.open(card, list);
+};
+
+const handleFilter = (ev) => {
+  filterText = ev.currentTarget.value;
+  render();
+};
+
+const filter = (filterText) => {
+  filterText = filterText.toLowerCase();
+  return data.board.list.map((list) => {
+    const newList = { ...list };
+    newList.cards = newList.cards.filter((card) => card.title.toLowerCase().includes(filterText) === true);
+    return newList;
+  });
+};
+
+// render
+
+const render = () => {
+  const filteredList = filter(filterText);
+  board.render(filteredList);
+  listenBoardEvents();
+};
+
+// listeners
+
+const listenBoardEvents = () => {
+  listenEvents('.js-click', 'click', handleBoardEvent);
+  listenEvents('.js-change', 'change', handleBoardEvent);
+  listenEvents('.js-open-card', 'click', openCard);
+  listenEvents('.js-edit-delete', 'click', handleDeleteCard);
+  listenEvents('.js-edit-title', 'change', modifyCardTitle);
+  listenEvents('.js-edit-description', 'change', modifyCardDescription);
+  listenEvents('.js-filter', 'keyup', handleFilter);
+};
+
+const listenEvents = (selector, eventType, eventHandler) => {
+  // clase, evento, tipo
+  const elements = document.querySelectorAll(selector);
+  for (const element of elements) {
+    element.addEventListener(eventType, eventHandler);
+  }
+};
+
+startApp();
+
+// PARA NO REPETIR CÓDIGO REFACTORIZO USANDO LA FUNCIÓN DE HANDLEBOARDEVENT
 
 // const moveListLeft = (ev) => {
 //   console.log('moviendo a la izquierda', ev.currentTarget.id);
@@ -169,43 +218,3 @@ const getNewId = () => {
 //     btn.addEventListener('click', moveListLeft);
 //   }
 // };
-
-const openCard = (ev) => {
-  cardId = ev.currentTarget.dataset.cardId;
-  const card = getCard(cardId);
-
-  // const list = state.getListOfCard(data, cardId);
-  const list = data.board.list[getCardListIndex(cardId)];
-  edit.open(card, list);
-};
-
-const render = () => {
-  // const filteredList = state.filter(data.board.list, filterText);
-  board.render(data.board.list);
-  listenEvents('.js-click', 'click', handleBoardEvent);
-  listenEvents('.js-change', 'change', handleBoardEvent);
-  listenEvents('.js-open-card', 'click', openCard);
-  listenEvents('.js-edit-delete', 'click', handleDeleteCard);
-  listenEvents('.js-edit-title', 'change', modifyCardTitle);
-  listenEvents('.js-edit-description', 'change', modifyCardDescription);
-  // board.render(filteredList);
-};
-
-const handleFilter = (ev) => {
-  filterText = ev.currentTarget.value;
-  render();
-};
-
-const listenInitialEvents = () => {
-  listenEvents('.js-filter', 'keyup', handleFilter);
-};
-
-const listenEvents = (selector, eventType, eventHandler) => {
-  // clase, evento, tipo
-  const elements = document.querySelectorAll(selector);
-  for (const element of elements) {
-    element.addEventListener(eventType, eventHandler);
-  }
-};
-
-startApp();
