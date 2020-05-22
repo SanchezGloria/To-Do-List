@@ -1,0 +1,72 @@
+{
+  "board": {
+    "list": [
+      {
+        "id": "list-1",
+        "title": "Backlog",
+        "cards": [
+          {
+            "id": "card-1",
+            "title": "Publicar en GitHub Pages",
+            "description": "Lorem ipsum dolor sit amet",
+            "tags": ["JS", "Html"]
+          }
+        ]
+      },
+      {
+        "id": "list-2",
+        "title": "Por hacer",
+        "cards": [
+          {
+            "id": "card-2",
+            "title": "Unificar funcionalidad",
+            "description": "Lorem ipsum dolor sit amet",
+            "tags": ["JS"]
+          },
+          {
+            "id": "card-3",
+            "title": "Pintar el DOM",
+            "description": "Lorem ipsum dolor sit amet",
+            "tags": ["Css", "Html"]
+          }
+        ]
+      },
+      {
+        "id": "list-3",
+        "title": "Haciendo",
+        "cards": [
+          {
+            "id": "card-4",
+            "title": "Escuchar eventos",
+            "description": "Lorem ipsum dolor sit amet",
+            "tags": ["JS", "Css", "Html"]
+          }
+        ]
+      },
+      {
+        "id": "list-4",
+        "title": "Hecho",
+        "cards": [
+          {
+            "id": "card-5",
+            "title": "Manipular datos",
+            "description": "Lorem ipsum dolor sit amet",
+            "tags": ["Html"]
+          },
+          {
+            "id": "card-6",
+            "title": "Guardar datos en el local storage",
+            "description": "Lorem ipsum dolor sit amet",
+            "tags": ["JS", "Html"]
+          },
+          {
+            "id": "card-7",
+            "title": "Obtener datos del API",
+            "description": "Lorem ipsum dolor sit amet",
+            "tags": ["JS", "Css"]
+          }
+        ]
+      }
+    ]
+  }
+}
